@@ -14,7 +14,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   navigate(BuildContext context, String route) {
     context.go('/$route');
-    _goCurrRoute = GoRouter.of(context).location();
+
+    setState(() {
+      _goCurrRoute = GoRouter.of(context).location();
+    });
   }
 
   @override
