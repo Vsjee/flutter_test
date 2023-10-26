@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test/widgets/bottom_nav_bar.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -13,7 +12,6 @@ class CategoriesScreen extends StatelessWidget {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
