@@ -11,7 +11,6 @@ GoRouter _router = GoRouter(
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return Scaffold(
-          appBar: AppBar(title: const Text('App Shell')),
           body: Center(
             child: child,
           ),
