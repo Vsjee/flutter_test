@@ -21,34 +21,60 @@ GoRouter _router = GoRouter(
       routes: [
         GoRoute(
             path: '/',
-            builder: (BuildContext context, GoRouterState state) {
-              return const HomeScreen();
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const HomeScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  // Change the opacity of the screen using a Curve based on the the animation's
+                  // value
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.elasticInOut)
+                        .animate(animation),
+                    child: child,
+                  );
+                },
+              );
             }),
         GoRoute(
             path: '/categories',
-            builder: (BuildContext context, GoRouterState state) {
-              return const CategoriesScreen();
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const CategoriesScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  // Change the opacity of the screen using a Curve based on the the animation's
+                  // value
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.elasticInOut)
+                        .animate(animation),
+                    child: child,
+                  );
+                },
+              );
             }),
         GoRoute(
             path: '/profile',
-            builder: (BuildContext context, GoRouterState state) {
-              return const ProfileScreen();
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const ProfileScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  // Change the opacity of the screen using a Curve based on the the animation's
+                  // value
+                  return FadeTransition(
+                    opacity: CurveTween(curve: Curves.elasticInOut)
+                        .animate(animation),
+                    child: child,
+                  );
+                },
+              );
             }),
       ],
     ),
-    // GoRoute(
-    //     path: '/',
-    //     builder: (context, state) => const HomeScreen(),
-    //     routes: <GoRoute>[
-    //       GoRoute(
-    //         path: 'categories',
-    //         builder: (context, state) => const CategoriesScreen(),
-    //       ),
-    //       GoRoute(
-    //         path: 'profile',
-    //         builder: (context, state) => const ProfileScreen(),
-    //       ),
-    //     ]),
   ],
 );
 
