@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: GridView.count(
             crossAxisCount: 2,
-            children: fakeStoreData!
+            children: fakeStoreData
                 .map((item) => ItemCard(
                       item: item,
                     ))
