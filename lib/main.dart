@@ -15,6 +15,7 @@ GoRouter _router = GoRouter(
             child: child,
           ),
           bottomNavigationBar: const BottomNavBar(),
+          extendBody: true,
         );
       },
       routes: [
