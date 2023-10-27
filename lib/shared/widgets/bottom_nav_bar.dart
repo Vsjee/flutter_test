@@ -29,12 +29,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(20),
-        ),
+            color: const Color.fromARGB(255, 255, 255, 255),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0x00000000).withOpacity(1),
+                offset: const Offset(0, 0),
+                blurRadius: 10,
+                spreadRadius: -5,
+              ),
+            ]),
         child: Wrap(
           alignment: WrapAlignment.spaceEvenly,
           children: [
@@ -42,31 +49,37 @@ class _BottomNavBarState extends State<BottomNavBar> {
               onPressed: () {
                 navigate(context, '/');
               },
-              icon: const Icon(Icons.home_outlined),
-              iconSize: 35,
-              color: _goCurrRoute == '/'
-                  ? const Color.fromARGB(255, 115, 0, 255)
-                  : Colors.white,
+              icon: Icon(
+                Icons.home_outlined,
+                size: 35,
+                color: _goCurrRoute == '/'
+                    ? const Color.fromARGB(255, 115, 0, 255)
+                    : const Color.fromARGB(255, 29, 29, 29),
+              ),
             ),
             IconButton(
               onPressed: () {
                 navigate(context, 'categories');
               },
-              icon: const Icon(Icons.category_outlined),
-              iconSize: 35,
-              color: _goCurrRoute == '/categories'
-                  ? const Color.fromARGB(255, 115, 0, 255)
-                  : Colors.white,
+              icon: Icon(
+                Icons.category_outlined,
+                size: 35,
+                color: _goCurrRoute == '/categories'
+                    ? const Color.fromARGB(255, 115, 0, 255)
+                    : const Color.fromARGB(255, 29, 29, 29),
+              ),
             ),
             IconButton(
               onPressed: () {
                 navigate(context, 'profile');
               },
-              icon: const Icon(Icons.person_outline),
-              iconSize: 35,
-              color: _goCurrRoute == '/profile'
-                  ? const Color.fromARGB(255, 115, 0, 255)
-                  : Colors.white,
+              icon: Icon(
+                Icons.person_2_outlined,
+                color: _goCurrRoute == '/profile'
+                    ? const Color.fromARGB(255, 115, 0, 255)
+                    : const Color.fromARGB(255, 29, 29, 29),
+                size: 35,
+              ),
             ),
           ],
         ));
