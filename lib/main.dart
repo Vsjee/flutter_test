@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/pages/categories/categories_screen.dart';
 import 'package:test/pages/home/home_screen.dart';
@@ -79,7 +80,9 @@ GoRouter _router = GoRouter(
 );
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
