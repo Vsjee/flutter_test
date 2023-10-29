@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test/core/providers/provider.dart';
 import 'package:test/core/responses/fake_store_api_mode.dart';
 import 'package:test/core/services/fake_store_api.dart';
 import 'package:test/shared/widgets/item_card.dart';
@@ -11,44 +13,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<FakeStoreResponse> fakeStoreData = [];
-  var isLoaded = false;
+  // List<FakeStoreResponse> fakeStoreData = [];
+  // var isLoaded = false;
 
-  @override
-  void initState() {
-    super.initState();
-    getFakeStore();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getFakeStore();
+  // }
 
-  getFakeStore() async {
-    fakeStoreData = await FakeStoreApi().getData();
+  // getFakeStore() async {
+  //   fakeStoreData = await FakeStoreApi().getData();
 
-    if (fakeStoreData.isNotEmpty) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
+  //   if (fakeStoreData.isNotEmpty) {
+  //     setState(() {
+  //       isLoaded = true;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Visibility(
-        visible: isLoaded,
-        replacement: const Center(
+    return Scaffold(body: Consumer(builder: (context, ref, child) {
+      final fakeStoreDataa = ref.watch(fakeStoreDataProvider);
+
+      return fakeStoreDataa.when(
+        data: (data) {
+          return Center(
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: data
+                  .map((item) => ItemCard(
+                        item: item,
+                      ))
+                  .toList(),
+            ),
+          );
+        },
+        error: (err, s) => Text(err.toString()),
+        loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
-        child: Center(
-          child: GridView.count(
-            crossAxisCount: 2,
-            children: fakeStoreData
-                .map((item) => ItemCard(
-                      item: item,
-                    ))
-                .toList(),
-          ),
-        ),
-      ),
-    );
+      );
+      // return Visibility(
+      //   visible: isLoaded,
+      //   replacement: const Center(
+      //     child: CircularProgressIndicator(),
+      //   ),
+      //   child: Center(
+      //     child: GridView.count(
+      //       crossAxisCount: 2,
+      //       children: fakeStoreData
+      //           .map((item) => ItemCard(
+      //                 item: item,
+      //               ))
+      //           .toList(),
+      //     ),
+      //   ),
+      // );
+    }));
   }
 }
