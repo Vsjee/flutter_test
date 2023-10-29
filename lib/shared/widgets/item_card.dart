@@ -9,7 +9,16 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Image.network(item.image),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(item.image),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+        child: const Text("YOUR TEXT"),
+      ),
     );
   }
 }
